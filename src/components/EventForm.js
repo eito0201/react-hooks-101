@@ -13,7 +13,7 @@ const EventForm = () => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
-  const addEvent = (e) => {
+  const addEvent = e => {
     e.preventDefault()
     dispatch({
       type: CREATE_EVENT,
@@ -24,14 +24,14 @@ const EventForm = () => {
     dispatch({
       type: ADD_OPERATION_LOG,
       description: 'イベントを作成しました。',
-      operatedAt: timeCurrentIso8601,
+      operatedAt: timeCurrentIso8601(),
     })
 
     setTitle('')
     setBody('')
   }
 
-  const deleteAllEvents = (e) => {
+  const deleteAllEvents = e => {
     e.preventDefault()
     const result = window.confirm(
       '全てのイベントを本当に削除してもよいですか？'
@@ -42,14 +42,14 @@ const EventForm = () => {
       dispatch({
         type: ADD_OPERATION_LOG,
         description: '全てのイベントを削除しました。',
-        operatedAt: timeCurrentIso8601,
+        operatedAt: timeCurrentIso8601(),
       })
     }
   }
 
   const unCreatable = title === '' || body === ''
 
-  const deleteAllOperationLogs = (e) => {
+  const deleteAllOperationLogs = e => {
     e.preventDefault()
     const result = window.confirm(
       '全ての操作ログを本当に削除してもよいですか？'
@@ -70,7 +70,7 @@ const EventForm = () => {
             className="form-control"
             id="formEventTitle"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -79,7 +79,7 @@ const EventForm = () => {
             className="form-control"
             id="formEventBody"
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+            onChange={e => setBody(e.target.value)}
           />
         </div>
         <button
